@@ -34,6 +34,31 @@
   pointer-events: none;
 }
 
+.active-nav-glass {
+  border: 1px solid rgba(109, 160, 47, 0.42);
+  background:
+    radial-gradient(circle at 30% 10%, rgba(255, 253, 247, 0.9), transparent 48%),
+    linear-gradient(135deg, rgba(240, 247, 240, 0.95), rgba(203, 224, 177, 0.68)),
+    rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 12px 28px rgba(58, 42, 31, 0.16),
+    0 0 22px rgba(109, 160, 47, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(87, 128, 38, 0.16);
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+}
+
+.active-nav-glass::after {
+  position: absolute;
+  inset: 1px 6px auto;
+  height: 45%;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.54), transparent);
+  content: '';
+  pointer-events: none;
+}
+
 .glass-dark-panel {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
@@ -43,6 +68,224 @@
   box-shadow: 0 28px 80px rgba(9, 6, 4, 0.36);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+}
+
+.contact-forest::before,
+.contact-forest::after {
+  position: absolute;
+  content: '';
+  pointer-events: none;
+}
+
+.contact-forest::before {
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 11rem;
+  background:
+    linear-gradient(135deg, transparent 0 18%, rgba(9, 27, 9, 0.72) 18% 24%, transparent 24% 32%, rgba(9, 27, 9, 0.66) 32% 39%, transparent 39% 47%, rgba(9, 27, 9, 0.72) 47% 55%, transparent 55%),
+    linear-gradient(180deg, transparent, rgba(9, 27, 9, 0.74));
+  opacity: 0.86;
+}
+
+.contact-forest::after {
+  inset: 0;
+  background:
+    radial-gradient(circle at 16% 30%, rgba(109, 160, 47, 0.22), transparent 24rem),
+    radial-gradient(circle at 86% 24%, rgba(243, 217, 168, 0.12), transparent 20rem);
+}
+
+.tree-silhouette {
+  position: absolute;
+  z-index: 1;
+  width: 13rem;
+  height: 20rem;
+  pointer-events: none;
+  opacity: 0.24;
+}
+
+.tree-silhouette::before {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 1rem;
+  height: 8.5rem;
+  border-radius: 999px;
+  background: rgba(9, 27, 9, 0.78);
+  content: '';
+  transform: translateX(-50%);
+}
+
+.tree-silhouette::after {
+  position: absolute;
+  left: 50%;
+  bottom: 6rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 72% 28% 68% 32% / 60% 36% 64% 40%;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(137, 198, 137, 0.38), transparent 34%),
+    rgba(9, 27, 9, 0.78);
+  content: '';
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.tree-silhouette-left {
+  left: -2rem;
+  bottom: 4rem;
+}
+
+.tree-silhouette-right {
+  right: -2.5rem;
+  bottom: 5.5rem;
+  transform: scale(1.12);
+}
+
+.floating-leaf {
+  position: absolute;
+  z-index: 1;
+  width: 3.5rem;
+  height: 1.65rem;
+  border-radius: 100% 0 100% 0;
+  background:
+    linear-gradient(135deg, rgba(177, 210, 137, 0.52), rgba(87, 128, 38, 0.18)),
+    rgba(217, 236, 217, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 16px 28px rgba(9, 27, 9, 0.18);
+  pointer-events: none;
+}
+
+.floating-leaf::after {
+  position: absolute;
+  left: 0.4rem;
+  right: 0.45rem;
+  top: 50%;
+  height: 1px;
+  background: rgba(255, 253, 247, 0.34);
+  content: '';
+  transform: rotate(-18deg);
+}
+
+.botanical-section::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(109, 160, 47, 0.08), transparent 18rem),
+    radial-gradient(circle at 88% 28%, rgba(170, 149, 112, 0.1), transparent 20rem);
+  content: '';
+  pointer-events: none;
+}
+
+.botanical-dark-section::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 16% 22%, rgba(177, 210, 137, 0.12), transparent 20rem),
+    radial-gradient(circle at 88% 70%, rgba(243, 217, 168, 0.08), transparent 22rem);
+  content: '';
+  pointer-events: none;
+}
+
+.botanical-branch,
+.dark-branch {
+  position: absolute;
+  z-index: 1;
+  width: 18rem;
+  height: 11rem;
+  pointer-events: none;
+  opacity: 0.28;
+}
+
+.botanical-branch::before,
+.dark-branch::before {
+  position: absolute;
+  left: 1rem;
+  top: 5.2rem;
+  width: 15rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: currentColor;
+  content: '';
+  transform: rotate(-18deg);
+  transform-origin: left center;
+}
+
+.botanical-branch::after,
+.dark-branch::after {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 24% 42%, currentColor 0 10%, transparent 11%),
+    radial-gradient(ellipse at 42% 30%, currentColor 0 9%, transparent 10%),
+    radial-gradient(ellipse at 55% 54%, currentColor 0 10%, transparent 11%),
+    radial-gradient(ellipse at 72% 36%, currentColor 0 8%, transparent 9%);
+  content: '';
+}
+
+.botanical-branch {
+  color: rgba(87, 128, 38, 0.44);
+}
+
+.dark-branch {
+  color: rgba(177, 210, 137, 0.34);
+}
+
+.contact-info-card {
+  transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+
+.contact-info-card:hover {
+  border-color: rgba(177, 210, 137, 0.42);
+  background: rgba(255, 253, 247, 0.13);
+  box-shadow: 0 22px 55px rgba(9, 27, 9, 0.24);
+}
+
+.whatsapp-contact-card {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+
+.whatsapp-contact-card::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 35%, rgba(37, 211, 102, 0.28), transparent 12rem),
+    linear-gradient(135deg, rgba(255, 253, 247, 0.08), transparent);
+  content: '';
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.whatsapp-contact-card:hover {
+  border-color: rgba(37, 211, 102, 0.55);
+  background: rgba(37, 211, 102, 0.2);
+  box-shadow: 0 24px 60px rgba(9, 27, 9, 0.26);
+}
+
+.whatsapp-contact-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-form-panel {
+  border-color: rgba(255, 253, 247, 0.28);
+  background:
+    radial-gradient(circle at 90% 8%, rgba(177, 210, 137, 0.2), transparent 16rem),
+    linear-gradient(135deg, rgba(58, 42, 31, 0.74), rgba(19, 82, 19, 0.48)),
+    rgba(19, 14, 10, 0.48);
+}
+
+.contact-form-panel::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.18), transparent 32%, rgba(177, 210, 137, 0.1) 68%, transparent),
+    radial-gradient(circle at 14% 0%, rgba(255, 253, 247, 0.16), transparent 18rem);
+  content: '';
+  pointer-events: none;
 }
 
 .section-eyebrow {
@@ -71,13 +314,16 @@
 
 .form-field {
   width: 100%;
-  border: 1px solid rgba(253, 253, 252, 0.26);
+  border: 1px solid rgba(253, 253, 252, 0.34);
   border-radius: 8px;
-  background: rgba(253, 253, 252, 0.9);
+  background: rgba(253, 253, 252, 0.92);
   padding: 1rem 1.1rem;
   color: #3a2a1f;
   outline: none;
-  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 12px 30px rgba(9, 27, 9, 0.08);
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease, transform 180ms ease;
 }
 
 .form-field::placeholder {
@@ -87,5 +333,8 @@
 .form-field:focus {
   border-color: rgba(109, 160, 47, 0.74);
   background: #fffdf7;
-  box-shadow: 0 0 0 4px rgba(109, 160, 47, 0.18);
+  box-shadow:
+    0 0 0 4px rgba(109, 160, 47, 0.18),
+    0 18px 40px rgba(9, 27, 9, 0.16);
+  transform: translateY(-1px);
 }

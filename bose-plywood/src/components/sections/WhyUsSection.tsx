@@ -7,8 +7,23 @@ import { featureCards } from '@/constants/features'
 
 function WhyUsSection() {
   return (
-    <section id="why-us" className="bg-walnut-800 px-5 py-28 text-cream-50 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <section id="why-us" className="botanical-dark-section relative overflow-hidden bg-walnut-800 px-5 py-28 text-cream-50 lg:px-8">
+      <motion.div
+        className="dark-branch left-[-3rem] top-10 hidden md:block"
+        animate={{ rotate: [-5, 2, -5], y: [0, -8, 0] }}
+        transition={{ duration: 9.5, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="dark-branch bottom-8 right-[-4rem] hidden rotate-180 md:block"
+        animate={{ rotate: [182, 174, 182], y: [0, 12, 0] }}
+        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="floating-leaf right-[18%] top-[16%] opacity-40"
+        animate={{ y: [0, -18, 0], x: [0, 8, 0], rotate: [18, 32, 18] }}
+        transition={{ duration: 7.5, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <div className="relative mx-auto max-w-7xl">
         <motion.div className="mb-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]" initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
           <motion.div variants={fadeInUp}>
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-forest-300">Why Choose Us</p>

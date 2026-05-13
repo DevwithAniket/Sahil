@@ -11,25 +11,25 @@ function HeroSection() {
   const { heroRef, heroY } = useHeroParallax()
 
   return (
-    <section ref={heroRef} className="relative min-h-screen overflow-hidden px-5 pt-28">
-      <motion.div className="absolute inset-0" style={{ y: heroY }}>
+    <section ref={heroRef} className="relative isolate min-h-screen overflow-hidden px-5 pt-28">
+      <motion.div className="pointer-events-none absolute inset-x-0 -top-16 bottom-[-7rem] z-0 will-change-transform" style={{ y: heroY }}>
         <div className="absolute inset-0 z-10 bg-[linear-gradient(100deg,rgba(38,28,20,0.88)_0%,rgba(77,56,41,0.74)_46%,rgba(87,128,38,0.54)_100%)]" />
         <img
           src="https://images.unsplash.com/photo-1600566752229-250ed79470f8?auto=format&fit=crop&w=2200&q=90"
           alt="Warm wooden interiors"
-          className="h-full w-full scale-105 object-cover"
+          className="relative z-0 h-full w-full scale-105 object-cover"
         />
       </motion.div>
 
-      <div className="relative z-20 mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-10 pb-16 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="relative z-20 mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-10 pb-16 sm:pb-20 lg:grid-cols-[1.05fr_0.95fr]">
         <motion.div initial="initial" animate="animate" variants={staggerContainer}>
-          <motion.p variants={fadeInUp} className="mb-5 inline-flex rounded-[8px] border border-cream-50/35 bg-cream-50/15 px-4 py-2 text-sm font-semibold text-cream-50 backdrop-blur-xl">
+          <motion.p variants={fadeInUp} className="mb-5 inline-flex max-w-full rounded-[8px] border border-cream-50/35 bg-cream-50/15 px-4 py-2 text-sm font-semibold leading-6 text-cream-50 backdrop-blur-xl">
             Premium plywood, veneers, laminates, and interior materials
           </motion.p>
-          <motion.h1 variants={fadeInUp} className="max-w-4xl font-display text-5xl leading-[1.02] text-cream-50 md:text-7xl lg:text-8xl">
+          <motion.h1 variants={fadeInUp} className="max-w-4xl font-display text-4xl leading-[1.04] text-cream-50 sm:text-5xl md:text-7xl lg:text-8xl">
             Crafting spaces with warm grain and lasting strength
           </motion.h1>
-          <motion.p variants={fadeInUp} className="mt-7 max-w-2xl text-lg leading-8 text-cream-100 md:text-xl">
+          <motion.p variants={fadeInUp} className="mt-7 max-w-2xl text-base leading-8 text-cream-100 sm:text-lg md:text-xl">
             A curated material house for architects, carpenters, builders, and homeowners who want refined finishes without compromising durability.
           </motion.p>
           <motion.div variants={fadeInUp} className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -103,7 +103,7 @@ function HeroSection() {
         </motion.div>
       </div>
 
-      <motion.div className="absolute bottom-7 left-1/2 z-20 -translate-x-1/2" animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+      <motion.div className="absolute bottom-7 left-1/2 z-30 -translate-x-1/2" animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }}>
         <ChevronDown className="h-8 w-8 text-cream-50" />
       </motion.div>
     </section>
