@@ -1,38 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: #fdfdfc;
+:root {
   color: #3a2a1f;
-  overflow-x: hidden;
+  background: #fbfaf8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4 {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(109, 160, 47, 0.14), transparent 30rem),
+    linear-gradient(135deg, #fbfaf8 0%, #f4f0e9 45%, #f0ebe3 100%);
+  color: #3a2a1f;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 600;
 }
 
-.text-walnut { color: #604633; }
-.bg-walnut { background-color: #604633; }
-.text-teak { color: #ce8f06; }
-.bg-teak { background-color: #ce8f06; }
-.text-forest { color: #2f882f; }
-.bg-forest { background-color: #2f882f; }
-
-.glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+::selection {
+  background: rgba(109, 160, 47, 0.28);
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
+@layer components {
+  .glass-panel {
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 8px;
+    background:
+      linear-gradient(135deg, rgba(255, 253, 247, 0.78), rgba(244, 240, 233, 0.48)),
+      rgba(255, 255, 255, 0.34);
+    box-shadow: 0 24px 70px rgba(58, 42, 31, 0.14);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+  }
 
-.parallax-element {
-  will-change: transform;
+  .glass-dark-panel {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background:
+      linear-gradient(135deg, rgba(58, 42, 31, 0.68), rgba(28, 82, 28, 0.42)),
+      rgba(19, 14, 10, 0.5);
+    box-shadow: 0 28px 80px rgba(9, 6, 4, 0.36);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .section-eyebrow {
+    color: #578026;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    margin-top: 1rem;
+    color: #3a2a1f;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.25rem, 4vw, 3.75rem);
+    line-height: 1.06;
+  }
+
+  .section-copy {
+    margin-top: 1.5rem;
+    max-width: 44rem;
+    color: #604633;
+    font-size: 1.08rem;
+    line-height: 1.85;
+  }
+
+  .form-field {
+    width: 100%;
+    border: 1px solid rgba(253, 253, 252, 0.26);
+    border-radius: 8px;
+    background: rgba(253, 253, 252, 0.9);
+    padding: 1rem 1.1rem;
+    color: #3a2a1f;
+    outline: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  }
+
+  .form-field::placeholder {
+    color: #7f7054;
+  }
+
+  .form-field:focus {
+    border-color: rgba(109, 160, 47, 0.74);
+    background: #fffdf7;
+    box-shadow: 0 0 0 4px rgba(109, 160, 47, 0.18);
+  }
 }

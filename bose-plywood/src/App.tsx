@@ -1,491 +1,390 @@
-import { useEffect, useRef } from 'react'
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
-import { ChevronDown, Shield, Leaf, Award, Hammer, Package, Eye, Phone, Mail, MapPin, Send } from 'lucide-react'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import {
+  ArrowRight,
+  Award,
+  CheckCircle2,
+  ChevronDown,
+  Eye,
+  Factory,
+  Hammer,
+  Layers3,
+  Leaf,
+  Mail,
+  MapPin,
+  Package,
+  Phone,
+  Ruler,
+  Send,
+  Shield,
+  Sparkles,
+  Truck,
+} from 'lucide-react'
+
+const products = [
+  {
+    title: 'Marine Plywood',
+    desc: 'High-density panels for kitchens, bathrooms, partitions, and moisture-prone interiors.',
+    img: 'https://images.unsplash.com/photo-1600607687939-ce8a06b3b4e5?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    title: 'Decorative Laminates',
+    desc: 'Matte, suede, stone, metallic, and woodgrain finishes for refined surfaces.',
+    img: 'https://images.unsplash.com/photo-1618220178908-b15c10669f2b?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    title: 'Natural Veneers',
+    desc: 'Hand-selected veneer flitches with warm grains and consistent character.',
+    img: 'https://images.unsplash.com/photo-1595449015942-2e720d533349?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    title: 'Block Boards',
+    desc: 'Straight, sturdy boards for wardrobes, long shutters, counters, and furniture frames.',
+    img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    title: 'Wall Panels',
+    desc: 'Acoustic, fluted, and designer panels that add texture to feature walls.',
+    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    title: 'Premium Hardware',
+    desc: 'Hinges, channels, handles, adhesives, and fittings curated for clean installation.',
+    img: 'https://images.unsplash.com/photo-1621905251557-0b95b0a3b4b3?auto=format&fit=crop&w=900&q=85',
+  },
+]
+
+const featureCards = [
+  { icon: Shield, title: 'Calibrated Strength', desc: 'Uniform bonding, balanced layers, and stable cores for demanding sites.' },
+  { icon: Leaf, title: 'Responsible Sourcing', desc: 'Suppliers are selected for traceability, efficiency, and lower material waste.' },
+  { icon: Award, title: 'Premium Finish', desc: 'Surfaces are inspected for grain, tone, texture, and finishing compatibility.' },
+  { icon: Hammer, title: 'Site-Ready Range', desc: 'Materials for furniture, partitions, cabinetry, retail, and hospitality work.' },
+  { icon: Package, title: 'Protected Dispatch', desc: 'Careful bundling keeps panels clean, straight, and ready for installation.' },
+  { icon: Eye, title: 'Design Guidance', desc: 'Our team helps match thickness, finish, and grain to each room and budget.' },
+]
+
+const gallery = [
+  'https://images.unsplash.com/photo-1600566753051-9c218943a465?auto=format&fit=crop&w=800&q=85',
+  'https://images.unsplash.com/photo-1600585154526-93f189253061?auto=format&fit=crop&w=800&q=85',
+  'https://images.unsplash.com/photo-1600607687925-3b1c29d382f4?auto=format&fit=crop&w=800&q=85',
+  'https://images.unsplash.com/photo-1600566752355-35792bedcfe3?auto=format&fit=crop&w=800&q=85',
+  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=85',
+  'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=85',
+]
 
 function App() {
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: heroRef })
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, -100])
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -120])
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
+    initial: { opacity: 0, y: 28 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+    transition: { duration: 0.75, ease: [0.25, 0.1, 0.25, 1] },
   }
 
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.09,
+      },
+    },
   }
 
   return (
-    <div className="min-h-screen bg-cream-50 text-walnut-800">
-      {/* Navigation */}
-      <motion.nav 
-        className="fixed top-0 left-0 right-0 z-50 glass shadow-sm"
-        initial={{ y: -100, opacity: 0 }}
+    <div className="min-h-screen overflow-hidden bg-cream-100 text-walnut-800">
+      <motion.nav
+        className="fixed left-0 right-0 top-0 z-50 border-b border-cream-50/40 bg-cream-100/65 shadow-[0_12px_40px_rgba(58,42,31,0.12)] backdrop-blur-2xl"
+        initial={{ y: -96, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.75, delay: 0.1 }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <motion.div 
-              className="text-2xl font-display font-semibold text-walnut-700"
-              whileHover={{ scale: 1.05 }}
-            >
-              Bose Plywood
-            </motion.div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#about" className="text-walnut-600 hover:text-walnut-800 transition-colors">About</a>
-              <a href="#products" className="text-walnut-600 hover:text-walnut-800 transition-colors">Products</a>
-              <a href="#why-us" className="text-walnut-600 hover:text-walnut-800 transition-colors">Why Us</a>
-              <a href="#gallery" className="text-walnut-600 hover:text-walnut-800 transition-colors">Gallery</a>
-              <a href="#contact" className="text-walnut-600 hover:text-walnut-800 transition-colors">Contact</a>
-            </div>
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
+          <a href="#" className="font-display text-2xl font-semibold tracking-normal text-walnut-800">
+            Bose Plywood
+          </a>
+          <div className="hidden items-center gap-8 md:flex">
+            {['About', 'Products', 'Why Us', 'Gallery', 'Contact'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-sm font-medium text-walnut-600 transition-colors hover:text-forest-700">
+                {item}
+              </a>
+            ))}
           </div>
+          <a href="#contact" className="rounded-[8px] bg-walnut-700 px-5 py-3 text-sm font-semibold text-cream-50 shadow-lg shadow-walnut-900/15 transition-colors hover:bg-forest-700">
+            Enquire
+          </a>
         </div>
       </motion.nav>
 
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-        <motion.div 
-          className="absolute inset-0 z-0"
-          style={{ y: heroY }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-walnut-900/90 via-walnut-800/80 to-forest-900/70 z-10" />
-          <div 
-            className="w-full h-full bg-cover bg-center"
-            style={{ 
-              backgroundImage: "url('https://images.unsplash.com/photo-1566669437673-c571caabfd65?auto=format&fit=crop&w=1920&q=80')"
-            }}
+      <section ref={heroRef} className="relative min-h-screen overflow-hidden px-5 pt-28">
+        <motion.div className="absolute inset-0" style={{ y: heroY }}>
+          <div className="absolute inset-0 z-10 bg-[linear-gradient(100deg,rgba(38,28,20,0.88)_0%,rgba(77,56,41,0.74)_46%,rgba(87,128,38,0.54)_100%)]" />
+          <img
+            src="https://images.unsplash.com/photo-1600566752229-250ed79470f8?auto=format&fit=crop&w=2200&q=90"
+            alt="Warm wooden interiors"
+            className="h-full w-full scale-105 object-cover"
           />
         </motion.div>
 
-        <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
+        <div className="relative z-20 mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-10 pb-16 lg:grid-cols-[1.05fr_0.95fr]">
+          <motion.div initial="initial" animate="animate" variants={staggerContainer}>
+            <motion.p variants={fadeInUp} className="mb-5 inline-flex rounded-[8px] border border-cream-50/35 bg-cream-50/15 px-4 py-2 text-sm font-semibold text-cream-50 backdrop-blur-xl">
+              Premium plywood, veneers, laminates, and interior materials
+            </motion.p>
+            <motion.h1 variants={fadeInUp} className="max-w-4xl font-display text-5xl leading-[1.02] text-cream-50 md:text-7xl lg:text-8xl">
+              Crafting spaces with warm grain and lasting strength
+            </motion.h1>
+            <motion.p variants={fadeInUp} className="mt-7 max-w-2xl text-lg leading-8 text-cream-100 md:text-xl">
+              A curated material house for architects, carpenters, builders, and homeowners who want refined finishes without compromising durability.
+            </motion.p>
+            <motion.div variants={fadeInUp} className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href="#products" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-forest-600 px-7 py-4 font-semibold text-cream-50 shadow-xl shadow-forest-900/25 transition-colors hover:bg-forest-700">
+                Explore Products <ArrowRight className="h-5 w-5" />
+              </a>
+              <a href="#gallery" className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-cream-50/50 bg-cream-50/10 px-7 py-4 font-semibold text-cream-50 backdrop-blur-xl transition-colors hover:bg-cream-50 hover:text-walnut-800">
+                View Inspirations
+              </a>
+            </motion.div>
+          </motion.div>
+
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            className="glass-panel hidden p-4 lg:block"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.35 }}
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display text-cream-50 mb-6 leading-tight">
-              Crafting Spaces with Strength & Elegance
-            </h1>
-            <p className="text-xl md:text-2xl text-cream-100 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Premium plywood and interior materials for discerning architects and designers
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                className="px-8 py-4 bg-forest-600 text-cream-50 font-medium rounded-full hover:bg-forest-700 transition-all shadow-lg"
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Explore Products
-              </motion.button>
-              <motion.button
-                className="px-8 py-4 border-2 border-cream-200 text-cream-100 font-medium rounded-full hover:bg-cream-100 hover:text-walnut-800 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Dealership Inquiry
-              </motion.button>
+            <div className="grid grid-cols-2 gap-4">
+              <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=700&q=85" alt="Plywood display" className="h-72 w-full rounded-[8px] object-cover" />
+              <div className="space-y-4">
+                <img src="https://images.unsplash.com/photo-1595514535215-24e688f99744?auto=format&fit=crop&w=700&q=85" alt="Wood texture" className="h-32 w-full rounded-[8px] object-cover" />
+                <div className="rounded-[8px] bg-cream-50/80 p-5 text-walnut-800 backdrop-blur-xl">
+                  <p className="font-display text-4xl font-semibold">30+</p>
+                  <p className="mt-1 text-sm font-medium text-walnut-600">years of material expertise</p>
+                </div>
+                <div className="rounded-[8px] bg-forest-700/85 p-5 text-cream-50 backdrop-blur-xl">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em]">Sap green promise</p>
+                  <p className="mt-2 text-sm text-cream-100">Stronger panels, cleaner sourcing, less waste.</p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
 
-        <motion.div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <ChevronDown className="w-8 h-8 text-cream-200" />
+        <motion.div className="absolute bottom-7 left-1/2 z-20 -translate-x-1/2" animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+          <ChevronDown className="h-8 w-8 text-cream-50" />
         </motion.div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-32 px-6 lg:px-8 bg-cream-100">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="grid lg:grid-cols-2 gap-16 items-center"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
+      <section id="about" className="relative bg-cream-100 px-5 py-28 lg:px-8">
+        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+          <motion.div className="relative" initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
+            <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=1200&q=85" alt="Elegant wooden room" className="h-[560px] w-full rounded-[8px] object-cover shadow-2xl shadow-walnut-900/20" />
+            <div className="glass-panel absolute -bottom-7 left-5 right-5 p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-forest-700">Material consultation</p>
+              <p className="mt-2 text-lg font-semibold text-walnut-800">From sheet selection to finish pairing, we help every surface feel intentional.</p>
+            </div>
+          </motion.div>
+          <motion.div initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
+            <motion.p variants={fadeInUp} className="section-eyebrow">About Bose Plywood</motion.p>
+            <motion.h2 variants={fadeInUp} className="section-title">A warmer, sharper way to choose interior materials</motion.h2>
+            <motion.p variants={fadeInUp} className="section-copy">
+              Bose Plywood brings together dependable plywood, expressive veneers, rich laminates, wall panels, and hardware under one roof. Our range is built for daily site realities: precision cuts, moisture exposure, heavy use, and finishes that need to look good for years.
+            </motion.p>
+            <motion.div variants={fadeInUp} className="mt-10 grid gap-4 sm:grid-cols-3">
+              {[
+                ['15K+', 'project supplies'],
+                ['250+', 'finish options'],
+                ['24 hr', 'dispatch support'],
+              ].map(([number, label]) => (
+                <div key={label} className="glass-panel p-5">
+                  <p className="font-display text-4xl font-semibold text-walnut-800">{number}</p>
+                  <p className="mt-1 text-sm font-medium text-walnut-600">{label}</p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section id="products" className="px-5 py-28 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <motion.div className="mb-14 max-w-3xl" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
+            <p className="section-eyebrow">Product Library</p>
+            <h2 className="section-title">Brown warmth, beige calm, sap-green responsibility</h2>
+            <p className="section-copy">Explore materials arranged for how modern interior teams actually build: strength first, finish second, service always.</p>
+          </motion.div>
+
+          <motion.div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
+            {products.map((product) => (
+              <motion.article key={product.title} className="group glass-panel overflow-hidden p-3" variants={fadeInUp} whileHover={{ y: -6 }}>
+                <div className="aspect-[4/3] overflow-hidden rounded-[8px]">
+                  <img src={product.img} alt={product.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-display text-2xl font-semibold text-walnut-800">{product.title}</h3>
+                  <p className="mt-2 leading-7 text-walnut-600">{product.desc}</p>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section id="why-us" className="bg-walnut-800 px-5 py-28 text-cream-50 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <motion.div className="mb-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]" initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
             <motion.div variants={fadeInUp}>
-              <h2 className="text-4xl md:text-5xl font-display text-walnut-800 mb-6">
-                About Bose Plywood
-              </h2>
-              <p className="text-lg text-walnut-600 mb-6 leading-relaxed">
-                For over three decades, Bose Plywood has been the cornerstone of premium interior materials in the industry. Our journey began with a simple vision: to bring the finest quality wood products that blend nature's beauty with modern craftsmanship.
-              </p>
-              <p className="text-lg text-walnut-600 mb-8 leading-relaxed">
-                Today, we stand as a trusted partner to architects, designers, and builders who demand excellence. Every sheet of plywood, every veneer, and every laminate that leaves our facility carries the mark of our commitment to quality.
-              </p>
-              <div className="grid grid-cols-2 gap-8">
-                <div>
-                  <p className="text-4xl font-display text-walnut-700 mb-2">30+</p>
-                  <p className="text-walnut-500">Years of Excellence</p>
-                </div>
-                <div>
-                  <p className="text-4xl font-display text-walnut-700 mb-2">15K+</p>
-                  <p className="text-walnut-500">Projects Completed</p>
-                </div>
-              </div>
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-forest-300">Why Choose Us</p>
+              <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">Every sheet is chosen for beauty, balance, and build quality</h2>
             </motion.div>
-            <motion.div
-              className="relative"
-              variants={fadeInUp}
-            >
-              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1600566752355-35792bedcfe3?auto=format&fit=crop&w=1000&q=80" 
-                  alt="Wood workshop"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-forest-500 rounded-full opacity-20 blur-2xl" />
+            <motion.p variants={fadeInUp} className="text-lg leading-8 text-cream-200">
+              We combine traditional material knowledge with a showroom experience: curated samples, practical guidance, reliable stock, and finishes that help designers create memorable rooms.
+            </motion.p>
+          </motion.div>
+
+          <motion.div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
+            {featureCards.map((feature) => (
+              <motion.div key={feature.title} className="rounded-[8px] border border-cream-50/12 bg-cream-50/8 p-7 shadow-xl shadow-walnut-950/20 backdrop-blur-2xl" variants={fadeInUp} whileHover={{ y: -5 }}>
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-[8px] bg-forest-500/20 text-forest-200">
+                  <feature.icon className="h-7 w-7" />
+                </div>
+                <h3 className="font-display text-2xl font-semibold">{feature.title}</h3>
+                <p className="mt-3 leading-7 text-cream-200">{feature.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="bg-cream-50 px-5 py-28 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <motion.div initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
+            <motion.p variants={fadeInUp} className="section-eyebrow">How We Work</motion.p>
+            <motion.h2 variants={fadeInUp} className="section-title">From concept board to finished installation</motion.h2>
+            <motion.div variants={fadeInUp} className="mt-10 space-y-4">
+              {[
+                { icon: Sparkles, title: 'Finish Discovery', text: 'Compare textures, grains, and tones in a calm material-led showroom setting.' },
+                { icon: Ruler, title: 'Specification Support', text: 'Choose the right grade, thickness, laminate, veneer, or panel for each room.' },
+                { icon: Factory, title: 'Quality Check', text: 'Inspect sheets for surface consistency, bonding, straightness, and packaging.' },
+                { icon: Truck, title: 'Reliable Delivery', text: 'Coordinate dispatches for retail orders, project sites, and dealer partners.' },
+              ].map((step) => (
+                <div key={step.title} className="glass-panel flex gap-5 p-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] bg-forest-100 text-forest-700">
+                    <step.icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-walnut-800">{step.title}</h3>
+                    <p className="mt-1 leading-7 text-walnut-600">{step.text}</p>
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
+          <motion.div className="grid grid-cols-2 gap-4" initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=85" alt="Interior finish selection" className="h-72 w-full rounded-[8px] object-cover" />
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=85" alt="Modern cabinet design" className="mt-12 h-72 w-full rounded-[8px] object-cover" />
+            <div className="rounded-[8px] bg-forest-700 p-7 text-cream-50">
+              <Layers3 className="mb-5 h-9 w-9" />
+              <p className="font-display text-3xl font-semibold">Layered interiors start with layered materials.</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=85" alt="Warm living room" className="h-72 w-full rounded-[8px] object-cover" />
+          </motion.div>
         </div>
       </section>
 
-      {/* Products Section */}
-      <section id="products" className="py-32 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-display text-walnut-800 mb-6">
-              Premium Product Categories
-            </h2>
-            <p className="text-lg text-walnut-600 max-w-2xl mx-auto">
-              Discover our curated collection of premium materials designed for exceptional interiors
-            </p>
+      <section id="gallery" className="px-5 py-28 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <motion.div className="mb-14 text-center" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
+            <p className="section-eyebrow">Interior Inspirations</p>
+            <h2 className="section-title mx-auto max-w-3xl">Real rooms, richer surfaces, quieter luxury</h2>
           </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            {[
-              { title: "Plywood", desc: "Marine, Commercial & Decorative grades", img: "https://images.unsplash.com/photo-1600607687939-ce8a06b3b4e5" },
-              { title: "Laminates", desc: "High-pressure decorative laminates", img: "https://images.unsplash.com/photo-1618220178908-b15c10669f2b" },
-              { title: "Veneers", desc: "Natural and engineered wood veneers", img: "https://images.unsplash.com/photo-1595449015942-2e720d533349" },
-              { title: "Decorative Panels", desc: "Designer panels for feature walls", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c" },
-              { title: "Hardware", desc: "Premium fittings and accessories", img: "https://images.unsplash.com/photo-1621905251557-0b95b0a3b4b3" },
-            ].map((product, i) => (
-              <motion.div
-                key={i}
-                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
-                variants={fadeInUp}
-                whileHover={{ y: -8 }}
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img 
-                    src={product.img} 
-                    alt={product.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-walnut-900/90 via-walnut-800/50 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-2xl font-display text-cream-50 mb-2">{product.title}</h3>
-                  <p className="text-cream-200">{product.desc}</p>
-                </div>
+          <motion.div className="grid auto-rows-[230px] gap-4 md:grid-cols-4" initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
+            {gallery.map((img, index) => (
+              <motion.div key={img} className={`group overflow-hidden rounded-[8px] shadow-lg shadow-walnut-900/12 ${index === 0 || index === 5 ? 'md:col-span-2 md:row-span-2' : ''}`} variants={fadeInUp}>
+                <img src={img} alt={`Interior inspiration ${index + 1}`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section id="why-us" className="py-32 px-6 lg:px-8 bg-cream-100">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-display text-walnut-800 mb-6">
-              Why Choose Bose Plywood
-            </h2>
-            <p className="text-lg text-walnut-600 max-w-2xl mx-auto">
-              Our commitment to excellence in every detail
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
+      <section className="bg-cream-50 px-5 py-28 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <motion.div className="grid gap-5 md:grid-cols-3" initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
             {[
-              { icon: Shield, title: "High Durability", desc: "Engineered for longevity and strength" },
-              { icon: Leaf, title: "Eco-Friendly", desc: "Sustainable sourcing and processes" },
-              { icon: Award, title: "Premium Finish", desc: "Exceptional surface quality" },
-              { icon: Hammer, title: "Moisture Resistant", desc: "Built to withstand humidity" },
-              { icon: Package, title: "Long-lasting Strength", desc: "Decades of reliable performance" },
-              { icon: Eye, title: "Trusted Quality", desc: "Industry-certified standards" },
-            ].map((feature, i) => (
-              <motion.div
-                key={i}
-                className="text-center p-8 rounded-2xl glass hover:shadow-lg transition-all duration-300"
-                variants={fadeInUp}
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-16 h-16 mx-auto mb-6 bg-forest-100 rounded-full flex items-center justify-center">
-                  <feature.icon className="w-8 h-8 text-forest-600" />
+              { quote: 'The finishes are consistent, the plywood is dependable, and their team understands what designers need on site.', author: 'Priya Sharma', role: 'Interior Designer' },
+              { quote: 'Bose Plywood has become our first call for premium projects because they make selection and delivery simple.', author: 'Rajesh Mehta', role: 'Principal Architect' },
+              { quote: 'Their veneer and laminate collections help us offer clients a much richer palette without slowing the build.', author: 'Vikram Singh', role: 'Project Manager' },
+            ].map((testimonial) => (
+              <motion.article key={testimonial.author} className="glass-panel p-7" variants={fadeInUp}>
+                <div className="mb-6 flex gap-2 text-forest-600">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <CheckCircle2 key={star} className="h-5 w-5" />
+                  ))}
                 </div>
-                <h3 className="text-xl font-display text-walnut-800 mb-3">{feature.title}</h3>
-                <p className="text-walnut-600">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Gallery */}
-      <section id="gallery" className="py-32 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-display text-walnut-800 mb-6">
-              Interior Inspirations
-            </h2>
-            <p className="text-lg text-walnut-600 max-w-2xl mx-auto">
-              Showcasing the elegance of our materials in real spaces
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            {[
-              "https://images.unsplash.com/photo-1600566753051-9c218943a465",
-              "https://images.unsplash.com/photo-1600585154526-93f189253061",
-              "https://images.unsplash.com/photo-1600607687925-3b1c29d382f4",
-              "https://images.unsplash.com/photo-1600566752355-35792bedcfe3",
-              "https://images.unsplash.com/photo-1618220178908-b15c10669f2b",
-              "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-              "https://images.unsplash.com/photo-1600607687648-4f1c4bb8c8e7",
-              "https://images.unsplash.com/photo-1600566753191-6b56a9a0a7b3",
-            ].map((img, i) => (
-              <motion.div
-                key={i}
-                className="aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.05 }}
-              >
-                <img 
-                  src={img}
-                  alt={`Gallery ${i + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-32 px-6 lg:px-8 bg-cream-100">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-display text-walnut-800 mb-6">
-              What Our Partners Say
-            </h2>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            {[
-              { quote: "Bose Plywood's materials elevate every project we undertake. Their quality is unmatched.", author: "Rajesh Mehta", role: "Principal Architect, Design Studio" },
-              { quote: "Reliable, premium materials with consistent quality. A trusted partner for 15 years.", author: "Priya Sharma", role: "Interior Designer" },
-              { quote: "The craftsmanship and attention to detail in every product speaks volumes about their commitment.", author: "Arjun Kapoor", role: "Project Manager" },
-            ].map((testimonial, i) => (
-              <motion.div
-                key={i}
-                className="p-8 rounded-2xl glass shadow-sm"
-                variants={fadeInUp}
-              >
-                <p className="text-walnut-700 mb-6 leading-relaxed">"{testimonial.quote}"</p>
-                <div>
+                <p className="leading-8 text-walnut-700">"{testimonial.quote}"</p>
+                <div className="mt-7">
                   <p className="font-semibold text-walnut-800">{testimonial.author}</p>
                   <p className="text-sm text-walnut-500">{testimonial.role}</p>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Inquiry Section */}
-      <section className="py-32 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="max-w-3xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-display text-walnut-800 mb-6">
-              Become a Dealer
-            </h2>
-            <p className="text-lg text-walnut-600 mb-12">
-              Partner with Bose Plywood to bring premium materials to your region. We seek passionate dealers committed to excellence.
-            </p>
-            <motion.button
-              className="px-10 py-4 bg-walnut-700 text-cream-50 font-medium rounded-full hover:bg-walnut-800 transition-all shadow-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Submit Inquiry
-            </motion.button>
+      <section id="contact" className="relative overflow-hidden bg-walnut-900 px-5 py-28 text-cream-50 lg:px-8">
+        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1800&q=85" alt="Luxury wood interior" className="absolute inset-0 h-full w-full object-cover opacity-[0.22]" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <motion.div initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-forest-300">Contact</p>
+            <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">Bring your next interior project to our material desk</h2>
+            <p className="mt-6 text-lg leading-8 text-cream-200">Visit the showroom, ask for a project quote, or start a dealership conversation with our team.</p>
+            <div className="mt-10 space-y-5">
+              {[
+                { icon: MapPin, title: 'Address', text: '123 Industrial Area, Wood Market, Delhi - 110001' },
+                { icon: Phone, title: 'Phone', text: '+91 11 2345 6789' },
+                { icon: Mail, title: 'Email', text: 'contact@boseplywood.com' },
+              ].map((item) => (
+                <div key={item.title} className="flex gap-4">
+                  <item.icon className="mt-1 h-6 w-6 text-forest-300" />
+                  <div>
+                    <p className="font-semibold">{item.title}</p>
+                    <p className="text-cream-200">{item.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </motion.div>
+
+          <motion.form className="glass-dark-panel grid gap-5 p-6 md:p-8" initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
+            <div className="grid gap-5 md:grid-cols-2">
+              <input type="text" placeholder="Your Name" className="form-field" />
+              <input type="tel" placeholder="Phone Number" className="form-field" />
+            </div>
+            <input type="email" placeholder="Email Address" className="form-field" />
+            <select className="form-field">
+              <option>Product Interest</option>
+              <option>Plywood</option>
+              <option>Laminates</option>
+              <option>Veneers</option>
+              <option>Dealer Inquiry</option>
+            </select>
+            <textarea placeholder="Tell us about your project" rows={5} className="form-field resize-none" />
+            <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-forest-600 px-8 py-4 font-semibold text-cream-50 shadow-xl shadow-forest-950/25 transition-colors hover:bg-forest-500">
+              Send Message <Send className="h-5 w-5" />
+            </button>
+          </motion.form>
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-32 px-6 lg:px-8 bg-cream-100">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-display text-walnut-800 mb-6">
-              Contact Us
-            </h2>
-            <p className="text-lg text-walnut-600 max-w-2xl mx-auto">
-              Let's discuss your next project
-            </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-6 h-6 text-forest-600 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-walnut-800 mb-1">Address</h4>
-                    <p className="text-walnut-600">123 Industrial Area, Wood Market, Delhi - 110001</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Phone className="w-6 h-6 text-forest-600 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-walnut-800 mb-1">Phone</h4>
-                    <p className="text-walnut-600">+91 11 2345 6789</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Mail className="w-6 h-6 text-forest-600 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-walnut-800 mb-1">Email</h4>
-                    <p className="text-walnut-600">contact@boseplywood.com</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.form
-              className="space-y-6"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full px-6 py-4 rounded-full border border-cream-300 focus:border-forest-500 focus:outline-none bg-white transition-colors"
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full px-6 py-4 rounded-full border border-cream-300 focus:border-forest-500 focus:outline-none bg-white transition-colors"
-                />
-              </div>
-              <div>
-                <textarea
-                  placeholder="Message"
-                  rows={4}
-                  className="w-full px-6 py-4 rounded-2xl border border-cream-300 focus:border-forest-500 focus:outline-none bg-white transition-colors resize-none"
-                />
-              </div>
-              <motion.button
-                type="submit"
-                className="w-full px-8 py-4 bg-forest-600 text-cream-50 font-medium rounded-full hover:bg-forest-700 transition-all shadow-lg flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Send Message
-                <Send className="w-5 h-5" />
-              </motion.button>
-            </motion.form>
+      <footer className="bg-[#0f0a07] px-5 py-12 text-cream-200 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h3 className="font-display text-2xl font-semibold text-cream-50">Bose Plywood</h3>
+            <p className="mt-2 text-sm">Premium materials for exceptional interiors</p>
           </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-walnut-900 text-cream-100 py-16 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-8 md:mb-0">
-              <h3 className="text-2xl font-display font-semibold mb-2">Bose Plywood</h3>
-              <p className="text-cream-300">Premium materials for exceptional interiors</p>
-            </div>
-            <div className="text-center md:text-right">
-              <p className="text-cream-300 text-sm">
-                © 2024 Bose Plywood. All rights reserved.
-              </p>
-            </div>
-          </div>
+          <p className="text-sm">© 2026 Bose Plywood. All rights reserved.</p>
         </div>
       </footer>
     </div>
