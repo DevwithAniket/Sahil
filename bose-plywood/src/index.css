@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #fdfdfc;
+  color: #3a2a1f;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+}
+
+.text-walnut { color: #604633; }
+.bg-walnut { background-color: #604633; }
+.text-teak { color: #ce8f06; }
+.bg-teak { background-color: #ce8f06; }
+.text-forest { color: #2f882f; }
+.bg-forest { background-color: #2f882f; }
+
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.parallax-element {
+  will-change: transform;
+}
