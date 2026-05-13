@@ -9,7 +9,7 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import WhyUsSection from '@/components/sections/WhyUsSection'
 import WorkflowSection from '@/components/sections/WorkflowSection'
 
-function App() {
+function Home() {
   return (
     <div className="min-h-screen overflow-hidden bg-cream-100 text-walnut-800">
       <Navbar />
@@ -28,4 +28,4 @@ function App() {
   )
 }
 
-export default App
+export default Home
