@@ -3,7 +3,8 @@ import type { Variants } from 'framer-motion'
 export const staggerContainer: Variants = {
   animate: {
     transition: {
-      staggerChildren: 0.09,
+      delayChildren: 0.04,
+      staggerChildren: 0.11,
     },
   },
 }

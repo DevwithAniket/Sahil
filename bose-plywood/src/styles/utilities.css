@@ -9,6 +9,31 @@
   -webkit-backdrop-filter: blur(22px);
 }
 
+.hero-glass-panel {
+  border-color: rgba(255, 253, 247, 0.5);
+  background:
+    linear-gradient(135deg, rgba(255, 253, 247, 0.72), rgba(244, 240, 233, 0.24) 42%, rgba(109, 160, 47, 0.13)),
+    rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 34px 90px rgba(19, 14, 10, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.58),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.hero-glass-panel::before {
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 253, 247, 0.8), rgba(109, 160, 47, 0.45), rgba(96, 70, 51, 0.4));
+  content: '';
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
 .glass-dark-panel {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;

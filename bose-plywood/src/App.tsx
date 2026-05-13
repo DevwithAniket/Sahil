@@ -8,10 +8,12 @@ import ProductsSection from '@/components/sections/ProductsSection'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import WhyUsSection from '@/components/sections/WhyUsSection'
 import WorkflowSection from '@/components/sections/WorkflowSection'
+import ScrollProgress from '@/components/ui/ScrollProgress'
 
 function App() {
   return (
     <div className="min-h-screen overflow-hidden bg-cream-100 text-walnut-800">
+      <ScrollProgress />
       <Navbar />
 
       <HeroSection />
