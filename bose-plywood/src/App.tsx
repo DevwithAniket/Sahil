@@ -9,11 +9,13 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import WhyUsSection from '@/components/sections/WhyUsSection'
 import WorkflowSection from '@/components/sections/WorkflowSection'
 import ScrollProgress from '@/components/ui/ScrollProgress'
+import BackgroundMusicToggle from '@/components/ui/BackgroundMusicToggle'
 
 function App() {
   return (
     <div className="min-h-screen overflow-hidden bg-cream-100 text-walnut-800">
       <ScrollProgress />
+      <BackgroundMusicToggle />
       <Navbar />
 
       <HeroSection />
